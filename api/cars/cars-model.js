@@ -2,9 +2,9 @@ const db = require('../../data/db-config');
 
 const getAll = () => {
   return db('cars')
-    .then(res => {
-      console.log(res);
-      return res;
+    .orderBy('id')
+    .then(cars => {
+      return cars;
     })
 }
 
@@ -12,16 +12,16 @@ const getById = (id) => {
   return db('cars')
     .where({ id })
     .first()
-    .then(res => {
-      return res;
+    .then(car => {
+      return car;
     })
 }
 
 const create = (car) => {
   return db('cars')
     .insert(car)
-    .then(res => {
-      return getById(res[0]);
+    .then(ids => {
+      return getById(ids[0]);
     })
 }
 
