@@ -1,10 +1,10 @@
 
-exports.up = function(knex) {
+exports.up = async function(knex) {
   // create customers table with firstName, lastName, email, phone, and address
     knex.schema.createTable('customers', function(table) {
         table.increments('id').primary();
-        table.string('firstName').notNullable();
-        table.string('lastName').notNullable();
+        table.string('first_name').notNullable();
+        table.string('last_name').notNullable();
         table.string('email');
         table.string('phone').notNullable();
         table.string('address').notNullable();
@@ -12,7 +12,7 @@ exports.up = function(knex) {
     );
 };
 
-exports.down = function(knex) {
+exports.down = async function(knex) {
     // drop customers table
         knex.schema.dropTable('customers');
 };
