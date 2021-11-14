@@ -35,6 +35,15 @@ router.post('/', checkCarPayload, checkVinNumberUnique, checkVinNumberValid, (re
         });
 });
 
+router.put('/:id', checkCarId, checkCarPayload, (req, res) => {
+    const id = req.params.id;
+    const car = req.body;
+    carsModel.update(id, car)
+        .then(car => {
+            res.status(200).send(car);
+        })
+});
+
 router.delete('/:id', checkCarId, (req, res) => {
     const id = req.params.id;
     carsModel.remove(id)
