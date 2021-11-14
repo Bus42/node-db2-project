@@ -1,4 +1,4 @@
-const mockData = require('../mock_data/CARS_MOCK_DATA_01');
+const mockData = require('../mock_data/CARS_MOCK_DATA_02');
 
 exports.seed = function(knex) {
   // Deletes ALL existing entries
