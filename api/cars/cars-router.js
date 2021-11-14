@@ -35,5 +35,17 @@ router.post('/', checkCarPayload, checkVinNumberUnique, checkVinNumberValid, (re
         });
 });
 
+router.delete('/:id', checkCarId, (req, res) => {
+    const id = req.params.id;
+    carsModel.remove(id)
+        .then(car => {
+            console.log(car)
+            res.status(200).end();
+        })
+        .catch(message => {
+            res.status(500).send(message);
+        });
+});
+
 
 module.exports = router;

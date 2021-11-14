@@ -25,8 +25,19 @@ const create = (car) => {
     })
 }
 
+// delete record and return deleted record from the database
+const remove = (id) => {
+  return db('cars')
+    .where({ id })
+    .del()
+    .then(car => {
+      return car;
+    })
+}
+
 module.exports = {
   getAll,
   getById,
-  create
+  create,
+  remove
 }
