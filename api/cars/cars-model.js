@@ -8,8 +8,13 @@ const getAll = () => {
   })
 }
 
-const getById = () => {
-  // DO YOUR MAGIC
+const getById = (id) => {
+  return db('cars')
+  .where({id})
+  .first()
+  .then(res => {
+    return res;
+  })
 }
 
 const create = () => {
