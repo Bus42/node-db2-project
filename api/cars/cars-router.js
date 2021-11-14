@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const carsModel = require('./cars-model');
+const { checkCarId, checkCarPayload, checkVinNumberValid, checkVinNumberUnique } = require('./cars-middleware');
 
 router.get('/', (req, res) => {
     carsModel.getAll()
@@ -12,7 +13,7 @@ router.get('/', (req, res) => {
         });
 });
 
-router.get('/:id', (req, res) => {
+router.get('/:id', checkCarId, (req, res) => {
     const id = req.params.id;
     carsModel.getById(id)
         .then(car => {
@@ -23,7 +24,7 @@ router.get('/:id', (req, res) => {
         });
 });
 
-router.post('/', (req, res) => {
+router.post('/', checkCarPayload, checkVinNumberValid, checkVinNumberUnique, (req, res) => {
     const car = req.body;
     carsModel.create(car)
         .then(car => {
