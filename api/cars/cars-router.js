@@ -23,5 +23,16 @@ router.get('/:id', (req, res) => {
         });
 });
 
+router.post('/', (req, res) => {
+    const car = req.body;
+    carsModel.create(car)
+        .then(car => {
+            res.status(201).send(car);
+        })
+        .catch(message => {
+            res.status(500).send(message);
+        });
+});
+
 
 module.exports = router;
